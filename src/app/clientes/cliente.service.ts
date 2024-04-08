@@ -1,35 +1,46 @@
 import { Injectable } from '@angular/core';
-import { CLIENTES } from './clientes.json';
-import {Cliente} from './cliente';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { of } from 'rxjs';
-import { map } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Cliente } from './cliente';
+
 @Injectable({
   providedIn: 'root'
 })
 export class ClienteService {
   private urlEndpoint:string = 'http://localhost:8080/api/clientes';
-  public httpHeaders = new HttpHeaders({'Content-Type': 'application/json'});
 
-  constructor(private http:HttpClient) { }
-  getClientes(): Observable<Cliente[]>{
-    //return of(CLIENTES);
-    return this.http.get(this.urlEndpoint).pipe(
-      map(response => response as Cliente[])
-    )
+  constructor(private http: HttpClient) { }
+
+  private agregarAuthorizationHeader() {
+    const token = localStorage.getItem('jwtToken');
+    if (token) {
+      return new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      });
+    } else {
+      return new HttpHeaders({ 'Content-Type': 'application/json' });
+    }
   }
 
-  create(cliente:Cliente): Observable<Cliente>{
-    return this.http.post<Cliente>(this.urlEndpoint, cliente,{headers: this.httpHeaders});
+  getClientes(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(this.urlEndpoint, { headers: this.agregarAuthorizationHeader() });
   }
-  getCliente(id): Observable<Cliente>{
-    return this.http.get<Cliente>(`${this.urlEndpoint}/${id}`);
+
+  create(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>(this.urlEndpoint, cliente, { headers: this.agregarAuthorizationHeader() });
   }
-  update(cliente:Cliente): Observable<Cliente>{
-    return this.http.put<Cliente>(`${this.urlEndpoint}/${cliente.id}`, cliente,{headers: this.httpHeaders});
+
+  getCliente(id: number): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.urlEndpoint}/${id}`, { headers: this.agregarAuthorizationHeader() });
   }
-  delete(id:number): Observable<Cliente>{
-    return this.http.delete<Cliente>(`${this.urlEndpoint}/${id}`,{headers: this.httpHeaders});
+
+  update(cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`${this.urlEndpoint}/${cliente.id}`, cliente, { headers: this.agregarAuthorizationHeader() });
+  }
+
+  delete(id: number): Observable<Cliente> {
+    return this.http.delete<Cliente>(`${this.urlEndpoint}/${id}`, { headers: this.agregarAuthorizationHeader() });
   }
 }

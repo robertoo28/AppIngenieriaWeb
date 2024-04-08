@@ -3,6 +3,7 @@ import {Cliente } from './cliente';
 import { ClienteService } from './cliente.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -13,11 +14,15 @@ import swal from 'sweetalert2';
 export class ClientesComponent implements OnInit{
   clientes: Cliente[];
 
-  constructor(private clienteService : ClienteService, public router:Router){}
+  constructor(private clienteService : ClienteService, public router:Router , private authService:AuthService){}
   ngOnInit(){
     this.clienteService.getClientes().subscribe(
       clientes => this.clientes = clientes
    );
+  }
+  logout(){
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
   delete(cliente:Cliente):void{
     swal({

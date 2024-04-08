@@ -11,13 +11,17 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { RouterModule,Routes } from '@angular/router';
 import { FormComponent } from './clientes/form.component';
 import { FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  {path: '', redirectTo: '/clientes', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'directivas', component: DirectivaComponent},
-  {path: 'clientes', component: ClientesComponent},
-  {path: 'clientes/form', component: FormComponent},
-  {path: 'clientes/form/:id', component: FormComponent}
+  {path: 'clientes', component: ClientesComponent,canActivate: [AuthGuard]},
+  {path: 'clientes/form', component: FormComponent,canActivate: [AuthGuard]},
+  {path: 'clientes/form/:id', component: FormComponent,canActivate: [AuthGuard]},
+  { path: '**', redirectTo: 'login' }
 ];
 @NgModule({
   declarations: [
@@ -26,7 +30,8 @@ const routes: Routes = [
     FooterComponent,
     DirectivaComponent,
     ClientesComponent,
-    FormComponent
+    FormComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
