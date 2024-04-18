@@ -1,0 +1,36 @@
+<div>
+  <input type="date" [(ngModel)]="fechaInicio" placeholder="Fecha de inicio">
+  <input type="date" [(ngModel)]="fechaFin" placeholder="Fecha de fin">
+  <button (click)="cargarVentas()">Cargar Ventas</button>
+
+  <div *ngIf="ventas.length > 0">
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID Venta</th>
+          <th>ID Cliente</th>
+          <th>Nombre Cliente</th>
+          <th>Fecha Venta</th>
+          <th>Total Venta</th>
+          <th>Detalle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let venta of ventas">
+          <td>{{ venta.id }}</td>
+          <td>{{ venta.clienteId }}</td>
+          <td>{{ venta.clienteNombre }}</td>
+          <td>{{ venta.fechaVenta | date:'mediumDate' }}</td>
+          <td>{{ venta.total | currency:'USD' }}</td>
+          <td>
+            <button type="button" class="btn btn-info" (click)="verDetalle(venta.id)">Ver Detalle</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div *ngIf="ventas.length === 0">
+    No hay ventas en el rango seleccionado.
+  </div>
+</div>
+
