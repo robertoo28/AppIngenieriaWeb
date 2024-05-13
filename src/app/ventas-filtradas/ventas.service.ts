@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class VentasService {
-  private baseUrl = 'http://localhost:8080/api/ventas';
+  private baseUrl = 'https://dazzling-spontaneity-production.up.railway.app/api/ventas';
 
   constructor(private http: HttpClient) { }
   private agregarAuthorizationHeader() {

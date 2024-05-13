@@ -37,13 +37,26 @@
       </div>
       <div class="form-group row">
         <div class="col-sm-6">
-          <button class="btn btn-primary" role="button" (click)="cliente.id ? update() : create()"
-                  [disabled]="form.invalid">Crear/Actualizar</button>
+          <button class="btn btn-primary" role="button"
+                  (click)="cliente.id ? update() : create()"
+                  [disabled]="form.invalid"
+                  *ngIf="!cliente.id; else elseBlock">
+            Crear
+          </button>
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button"
+                    (click)="update()"
+                    [disabled]="form.invalid">
+              Actualizar
+            </button>
+          </ng-template>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+
 
 
 

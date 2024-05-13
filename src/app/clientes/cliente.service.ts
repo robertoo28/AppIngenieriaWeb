@@ -8,7 +8,7 @@ import { Cliente } from './cliente';
   providedIn: 'root'
 })
 export class ClienteService {
-  private urlEndpoint:string = 'http://localhost:8080/api/clientes';
+  private urlEndpoint:string = 'https://dazzling-spontaneity-production.up.railway.app/api/clientes';
 
   constructor(private http: HttpClient) { }
 

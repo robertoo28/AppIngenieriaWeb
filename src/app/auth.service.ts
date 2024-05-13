@@ -20,7 +20,7 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`http://localhost:8080/api/auth/signin`, { username, password })
+    return this.http.post<any>(`https://dazzling-spontaneity-production.up.railway.app/api/auth/signin`, { username, password })
       .pipe(map(user => {
         // Asumiendo que tu backend devuelve un objeto con una propiedad 'token'
         if (user && user.token) {
