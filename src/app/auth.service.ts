@@ -20,7 +20,9 @@ export class AuthService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`https://dazzling-spontaneity-production.up.railway.app/api/auth/signin`, { username, password })
+    const produccion = 'https://dazzling-spontaneity-production.up.railway.app/api/auth/signin';
+    const testing = 'http://localhost:8080/api/auth/signin';
+    return this.http.post<any>(testing, { username, password })
       .pipe(map(user => {
         // Asumiendo que tu backend devuelve un objeto con una propiedad 'token'
         if (user && user.token) {
@@ -37,14 +39,13 @@ export class AuthService {
   }
   public isLoggedIn(): boolean {
     const token = localStorage.getItem('jwtToken');
-    // Aquí puedes añadir más lógica para validar el token si es necesario
     return token != null;
   }
 
   logout() {
-    // Eliminar al usuario y el token del almacenamiento local para cerrar la sesión del usuario
     localStorage.removeItem('currentUser');
-    localStorage.removeItem('jwtToken'); // Asegúrate de eliminar el token al cerrar sesión
+    localStorage.removeItem('jwtToken');
+    console.log('eliminadoooo'); // Porfavor eliminate te lo suplico
     this.currentUserSubject.next(null);
   }
 }

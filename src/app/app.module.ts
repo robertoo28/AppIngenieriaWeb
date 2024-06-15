@@ -14,6 +14,7 @@ import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './auth.guard';
 import { VentasFiltradasComponent } from './ventas-filtradas/ventas-filtradas.component';
+import { EstadisticasAdminComponent } from './estadisticas-admin/estadisticas-admin.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -23,6 +24,7 @@ const routes: Routes = [
   {path: 'clientes/form', component: FormComponent,canActivate: [AuthGuard]},
   {path: 'clientes/form/:id', component: FormComponent,canActivate: [AuthGuard]},
   {path: 'ventas-filtradas', component: VentasFiltradasComponent,canActivate: [AuthGuard]},
+  {path: 'estadisticas-admin', component: EstadisticasAdminComponent,canActivate: [AuthGuard]},
   { path: '**', redirectTo: 'login' }
 ];
 @NgModule({
@@ -34,7 +36,8 @@ const routes: Routes = [
     ClientesComponent,
     FormComponent,
     LoginComponent,
-    VentasFiltradasComponent
+    VentasFiltradasComponent,
+    EstadisticasAdminComponent
   ],
   imports: [
     BrowserModule,

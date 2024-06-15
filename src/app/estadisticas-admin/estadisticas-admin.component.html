@@ -1,0 +1,44 @@
+<div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle btn-success" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Categorias
+  </button>
+  <ul class="dropdown-menu">
+    <li *ngFor="let categoria of categorias">
+      <a class="dropdown-item" (click)="onCategoriaSelected(categoria)">{{ categoria }}</a>
+    </li>
+  </ul>
+  <div style="margin-top: 20px;">
+    <h3>Estudiantes</h3>
+    <p>Total de Estudiantes: {{ totalEstudiantes }}</p>
+  </div>
+  <div style="margin-top: 20px;">
+    <h3>Profesores</h3>
+    <p>Total de Profesores: {{ totalProfesores }}</p>
+  </div>
+  <div style="margin-top: 20px;">
+    <h3>Promedio de Notas</h3>
+    <p>Promedio de Notas: {{ averageNota }}</p>
+  </div>
+  <div style="margin-top: 20px;">
+    <button class="btn btn-primary" (click)="onVerEstudiantes()">Ver Estudiantes</button>
+  </div>
+  <div style="margin-top: 20px;" *ngIf="mostrarEstudiantes">
+    <h3>Estudiantes por Categoria</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Nota</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let estudiante of estudiantes">
+          <td>{{ estudiante.nombre }}</td>
+          <td>{{ estudiante.apellido }}</td>
+          <td>{{ estudiante.nota.toFixed(2) }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
