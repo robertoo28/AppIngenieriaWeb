@@ -19,7 +19,7 @@ export class EstudianteService {
     }
   }
 
-  private apiUrl = 'http://localhost:8080/api/estudiantes';
+  private apiUrl = 'https://dazzling-spontaneity-production.up.railway.app/api/estudiantes';
 
   constructor(private http: HttpClient) { }
 

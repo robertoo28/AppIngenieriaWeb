@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProfesorService {
-  private profesoresUrl = 'http://localhost:8080/api/profesores/listado'; 
+  private profesoresUrl = 'https://dazzling-spontaneity-production.up.railway.app/api/profesores/listado';
 
   private agregarAuthorizationHeader() {
     const token = localStorage.getItem('jwtToken');

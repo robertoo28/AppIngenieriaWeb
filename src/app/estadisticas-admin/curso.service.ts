@@ -19,10 +19,11 @@ export class CursoService {
     }
   }
 
-  private apiUrl = 'http://localhost:8080/api/cursos/categorias';
-  private conteoUrl = 'http://localhost:8080/api/cursos/conteo-por-categoria';
-  private cursosUrl = 'http://localhost:8080/api/cursos';
-  private promedioUrl = 'http://localhost:8080/api/notas_subtema/promedio';
+
+  private apiUrl = 'https://dazzling-spontaneity-production.up.railway.app/api/cursos/categorias';
+  private conteoUrl = 'https://dazzling-spontaneity-production.up.railway.app/api/cursos/conteo-por-categoria';
+  private cursosUrl = 'https://dazzling-spontaneity-production.up.railway.app/api/cursos';
+  private promedioUrl = 'https://dazzling-spontaneity-production.up.railway.app/api/notas_subtema/promedio';
   constructor(private http: HttpClient) { }
 
   getCategorias(): Observable<string[]> {

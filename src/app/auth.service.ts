@@ -21,7 +21,7 @@ export class AuthService {
 
   login(username: string, password: string) {
     const produccion = 'https://dazzling-spontaneity-production.up.railway.app/api/auth/signin';
-    const testing = 'http://localhost:8080/api/auth/signin';
+    const testing = 'https://dazzling-spontaneity-production.up.railway.app/api/auth/signin';
     return this.http.post<any>(testing, { username, password })
       .pipe(map(user => {
         // Asumiendo que tu backend devuelve un objeto con una propiedad 'token'

@@ -10,7 +10,7 @@ import { Cliente } from './cliente';
 export class ClienteService {
   public produccion = 'https://dazzling-spontaneity-production.up.railway.app/api/clientes';
   public testing = 'http://localhost:8080/api/clientes';
-  private urlEndpoint:string = this.testing;
+  private urlEndpoint:string = this.produccion;
 
   constructor(private http: HttpClient) { }
 
