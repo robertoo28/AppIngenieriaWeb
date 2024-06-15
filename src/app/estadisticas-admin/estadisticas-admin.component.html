@@ -19,26 +19,38 @@
     <h3>Promedio de Notas</h3>
     <p>Promedio de Notas: {{ averageNota }}</p>
   </div>
-  <div style="margin-top: 20px;">
-    <button class="btn btn-primary" (click)="onVerEstudiantes()">Ver Estudiantes</button>
-  </div>
-  <div style="margin-top: 20px;" *ngIf="mostrarEstudiantes">
-    <h3>Estudiantes por Categoria</h3>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Apellido</th>
-          <th>Nota</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let estudiante of estudiantes">
-          <td>{{ estudiante.nombre }}</td>
-          <td>{{ estudiante.apellido }}</td>
-          <td>{{ estudiante.nota.toFixed(2) }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+</div>
+
+<div class="form-group">
+  <label for="cursoId">Curso</label>
+  <select id="cursoId" [(ngModel)]="selectedCursoId" class="form-control">
+    <option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nombre }}</option>
+  </select>
+</div>
+<div class="form-group">
+  <label for="startDate">Fecha de Inicio</label>
+  <input type="date" id="startDate" [(ngModel)]="startDate" class="form-control">
+</div>
+<div class="form-group">
+  <label for="endDate">Fecha de Fin</label>
+  <input type="date" id="endDate" [(ngModel)]="endDate" class="form-control">
+</div>
+<button class="btn btn-primary" (click)="onFetchPromedioNotas()" [disabled]="!selectedCursoId || !startDate || !endDate">Obtener Promedio de Notas</button>
+
+<div *ngIf="promedioNotas.length > 0" style="margin-top: 20px;">
+  <h3>Promedio de Notas por Subtema</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Subtema</th>
+        <th>Promedio de Nota</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let promedio of promedioNotas">
+        <td>{{ promedio.subtema }}</td>
+        <td>{{ promedio.promedio.toFixed(2) }}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>

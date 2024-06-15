@@ -36,4 +36,7 @@ export class EstudianteService {
   getEstudiantesByCategoria(categoria: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/Listestudiantes`, { headers: this.agregarAuthorizationHeader(),params:{categoria} });
   }
+  saveEstudiante(estudiante: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/save`, estudiante, { headers: this.agregarAuthorizationHeader() });
+  }
 }

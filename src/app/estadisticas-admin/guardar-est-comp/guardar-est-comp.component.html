@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Guardar Estudiante</h2>
+  <form [formGroup]="estudianteForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input type="text" id="nombre" formControlName="nombre" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input type="text" id="apellido" formControlName="apellido" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+      <input type="date" id="fechaNacimiento" formControlName="fechaNacimiento" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label for="cursoNombre" class="form-label">Curso</label>
+      <select id="cursoNombre" formControlName="cursoNombre" class="form-select">
+        <option *ngFor="let curso of cursos" [value]="curso">{{ curso }}</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="nota" class="form-label">Nota</label>
+      <input type="number" id="nota" formControlName="nota" class="form-control" min="0" max="10" />
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!estudianteForm.valid">Guardar</button>
+  </form>
+</div>
